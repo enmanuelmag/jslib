@@ -80,6 +80,15 @@ export class PolicyService implements PolicyServiceAbstraction {
         this.policyCache = null;
     }
 
+    async getMasterPasswordPoliciesForInvitedUsers(
+      orgId: string
+    ): Promise<MasterPasswordPolicyOptions> {
+      const userId = await this.userService.getUserId();
+      const response = await this.apiService.getPoliciesByInvitedUser(orgId, userId);
+      const policies = await this.mapPoliciesFromToken(response);
+      return this.getMasterPasswordPolicyOptions(policies);
+    }
+
     async getMasterPasswordPolicyOptions(policies?: Policy[]): Promise<MasterPasswordPolicyOptions> {
         let enforcedOptions: MasterPasswordPolicyOptions = null;
 

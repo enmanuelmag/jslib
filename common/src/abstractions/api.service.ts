@@ -298,6 +298,10 @@ export abstract class ApiService {
     getPolicies: (organizationId: string) => Promise<ListResponse<PolicyResponse>>;
     getPoliciesByToken: (organizationId: string, token: string, email: string, organizationUserId: string) =>
         Promise<ListResponse<PolicyResponse>>;
+    getPoliciesByInvitedUser: (
+      organizationId: string,
+      userId: string
+    ) => Promise<ListResponse<PolicyResponse>>;
     putPolicy: (organizationId: string, type: PolicyType, request: PolicyRequest) => Promise<PolicyResponse>;
 
     getOrganizationUser: (organizationId: string, id: string) => Promise<OrganizationUserDetailsResponse>;

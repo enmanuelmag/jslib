@@ -35,7 +35,7 @@ export class ChangePasswordComponent implements OnInit {
 
     async ngOnInit() {
         this.email = await this.userService.getEmail();
-        this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions();
+        this.enforcedPolicyOptions ??= await this.policyService.getMasterPasswordPolicyOptions();
     }
 
     async submit() {
